@@ -1,11 +1,11 @@
 # set adapter to use, default is sqlite3
 # to use an alternative adapter run => rake spec DB='postgresql'
-db_name = ENV['DB'] || 'sqlite3'
+db_name = ENV['DB'] || 'mysql' #'sqlite3'
 database_yml = File.expand_path('../../internal/config/database.yml', __FILE__)
 
 if File.exist?(database_yml)
 
-  ActiveRecord::Migration.verbose = false
+  ActiveRecord::Migration.verbose = true #false
   ActiveRecord::Base.default_timezone = :utc
   ActiveRecord::Base.configurations = YAML.load_file(database_yml)
   ActiveRecord::Base.logger = Logger.new(File.join(File.dirname(__FILE__), '../debug.log'))
